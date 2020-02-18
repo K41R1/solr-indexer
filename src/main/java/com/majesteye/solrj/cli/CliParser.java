@@ -19,6 +19,7 @@ public abstract class CliParser {
         Options options = new Options();
 
         Option schemaPath = new Option("s", true, "path to schema.yml");
+        schemaPath.setRequired(true);
 
         options.addOption(schemaPath);
         return options;
