@@ -15,7 +15,7 @@ public class CliParserTest {
 
     @Test
     public void getCommandLineInstanceShouldWork() throws ParseException {
-        String[] args = {"-s", "data/films.yml"};
+        String[] args = {"-s", "example/data/films.yml"};
         CommandLine cmd = CliParser.getCommandLineInstance(args);
         
         assertNotNull("cmd Should Be Not Null", cmd);
@@ -24,10 +24,10 @@ public class CliParserTest {
 
     @Test
     public void shouldRetrieveArgs() throws ParseException {
-        String[] args = {"-s", "data/films.yml"};
+        String[] args = {"-s", "example/data/films.yml"};
         CommandLine cmd = CliParser.getCommandLineInstance(args);
         String path = cmd.getOptionValue("s");
 
-        assertEquals("data/films.yml", path);
+        assertEquals("example/data/films.yml", path);
     }
 }

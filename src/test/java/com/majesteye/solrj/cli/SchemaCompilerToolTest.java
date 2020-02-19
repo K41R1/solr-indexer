@@ -19,9 +19,9 @@ public class SchemaCompilerToolTest {
     @Test
     public void shouldCreateJavaClassInAppropriatePackage()
             throws ParseException, JsonSyntaxException, JsonIOException, ClassNotFoundException, IOException {
-        String[] args = {"-s", "/home/khairi/Workspace/indexer/data/user-schema.json"};
+        String[] args = {"-s", "example/schema/user-schema.json"};
         SchemaCompilerTool.main(args);
-        File classFile = new File("/home/khairi/Workspace/indexer/src/main/java/com/majesteye/solrj/example/Film.java");
+        File classFile = new File("src/main/java/com/majesteye/solrj/example/User.java");
         assertTrue("Model Class should be created", classFile.exists());
     }
     

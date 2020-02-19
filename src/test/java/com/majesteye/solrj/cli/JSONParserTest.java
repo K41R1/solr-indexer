@@ -18,18 +18,18 @@ public class JSONParserTest {
 
     @Test
     public void shouldParseAsClass() throws JsonSyntaxException, JsonIOException, FileNotFoundException {
-        Schema schema = JSONParser.parse("/home/khairi/Workspace/indexer/data/user-schema.json");
+        Schema schema = JSONParser.parse("example/schema/user-schema.json");
         
         assertNotNull(schema);
     }
 
     @Test
     public void fieldsShouldNotBeEmpty() throws JsonSyntaxException, JsonIOException, FileNotFoundException {
-        Schema schema = JSONParser.parse("/home/khairi/Workspace/indexer/data/user-schema.json");
+        Schema schema = JSONParser.parse("example/schema/user-schema.json");
         
         assertEquals(3, schema.getFields().size());
         assertEquals("hobbies", schema.getFields().get(2).getName());
-        assertEquals("java.util.List<String>", schema.getFields().get(2).getType());
+        assertEquals("java.util.List<java.lang.String>", schema.getFields().get(2).getType());
     }
     
 }
