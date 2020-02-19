@@ -13,9 +13,9 @@ import org.junit.Test;
 public class CliParserTest {
 
     private final String[] withSortArgs = { "-m", "com.majesteye.example.Film", "-s",
-            "/home/khairi/Workspace/indexer/data/films.json" };
+            "/home/khairi/Workspace/indexer/data/films.json", "-c", "films" };
     private final String[] withLongArgs = { "--model", "com.majesteye.example.Film", "--source",
-            "/home/khairi/Workspace/indexer/data/films.json" };
+            "/home/khairi/Workspace/indexer/data/films.json", "--collection", "films" };
 
     @Test
     public void shouldMatchWithShortArgs() throws ParseException {
@@ -24,6 +24,7 @@ public class CliParserTest {
         assertNotNull(cmd);
         assertEquals("com.majesteye.example.Film", cmd.getOptionValue("m"));
         assertEquals("/home/khairi/Workspace/indexer/data/films.json", cmd.getOptionValue("s"));
+        assertEquals("films", cmd.getOptionValue("c"));
     }
 
     @Test
@@ -33,5 +34,6 @@ public class CliParserTest {
         assertNotNull(cmd);
         assertEquals("com.majesteye.example.Film", cmd.getOptionValue("model"));
         assertEquals("/home/khairi/Workspace/indexer/data/films.json", cmd.getOptionValue("source"));
+        assertEquals("films",cmd.getOptionValue("collection"));
     }
 }

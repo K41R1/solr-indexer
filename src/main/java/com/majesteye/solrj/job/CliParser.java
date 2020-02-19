@@ -24,8 +24,12 @@ public class CliParser {
         Option model = new Option("m", "model", true, "Model Class (FQCN) to use");
         model.setRequired(true);
 
+        Option collection = new Option("c", "collection", true, "documents index collection");
+        collection.setRequired(true);
+
         options.addOption(source);
         options.addOption(model);
+        options.addOption(collection);
         return options;
     }
 
