@@ -1,11 +1,13 @@
 package com.majesteye.solrj.job;
 
+import java.io.FileReader;
 import java.io.IOException;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 import com.majesteye.solrj.SolrClientFactory;
+import com.majesteye.solrj.example.Film;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.ParseException;
@@ -25,6 +27,14 @@ public class Indexer {
                 "example/data/films.json", "-c", "films" };
         final CommandLine cmd = CliParser.getCommandLineInstance(params);
         final String collection = cmd.getOptionValue("c");
+        final String source = cmd.getOptionValue("s");
         final ConcurrentUpdateSolrClient solr = SolrClientFactory.getConcurrentClient();
+        Film[] films = gson.fromJson(new FileReader(source), Film[].class);
+
+        for (Film film : films) {
+            solr.addBean(collection, film);
+        }
+
+        solr.commit(collection);
     }
 }
