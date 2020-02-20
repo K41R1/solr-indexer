@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 import org.apache.solr.client.solrj.impl.ConcurrentUpdateSolrClient;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -22,6 +23,7 @@ public class SolrClientFactoryTest {
     }
 
     @Test
+    @Ignore
     public void shouldLoadProperties() throws IOException {
         Properties props = SolrClientFactory.loadConfig();
 

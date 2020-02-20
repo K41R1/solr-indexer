@@ -23,16 +23,14 @@ public class Indexer {
 
     public static void main(final String[] args) throws ParseException, IOException, JsonSyntaxException,
             JsonIOException, ClassNotFoundException, SolrServerException {
-        String[] params = { "-m", "com.majesteye.solrj.example.Film", "-s",
-                "example/data/films.json", "-c", "films" };
-        final CommandLine cmd = CliParser.getCommandLineInstance(params);
+        final CommandLine cmd = CliParser.getCommandLineInstance(args);
         final String collection = cmd.getOptionValue("c");
         final String source = cmd.getOptionValue("s");
         final ConcurrentUpdateSolrClient solr = SolrClientFactory.getConcurrentClient();
         Film[] films = gson.fromJson(new FileReader(source), Film[].class);
 
         for (Film film : films) {
-            solr.addBean(collection, film);
+            solr.addBean(collection, film, 20000);
         }
 
         solr.commit(collection);
